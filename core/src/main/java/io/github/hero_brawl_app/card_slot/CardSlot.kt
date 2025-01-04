@@ -49,7 +49,7 @@ class CardSlot(
     // calculated based on finger position
     private fun isBelowBoard() = tp.y + offsetY < board.boardBounds.y
 
-    private fun getCurrentCell() = board.cellBounds.find { cell -> cell.contains(tp.x + offsetX, tp.y+offsetY)}
+    private fun getCurrentCell() = board.placeableCells.find { cell -> cell.contains(tp.x + offsetX, tp.y+offsetY)}
 
     fun render() {
 
