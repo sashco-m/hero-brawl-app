@@ -16,6 +16,7 @@ import io.github.hero_brawl_app.unit.Unit
 class Board(
     private var game: HeroBrawl,
     private val rest: BattleREST,
+    private val sock: Socket,
     private val model: Model
 ) {
     val BOARD_X_OFFSET = 20F
@@ -71,8 +72,9 @@ class Board(
         // may be redundant if the state is updated fast enough. if so, remove this call and have
         // the caller use REST directly
         model.placeUnit(unit)
-        //sock.send(UnitPlaced(unit.name, unit.positionX, unit.positionY))
-        rest.addPiece(unit)
+         //sock.send(UnitPlaced(unit.name, unit.positionX, unit.positionY))
+        sock.placeUnit(unit)
+         //rest.addPiece(unit)
     }
 
     fun render() {

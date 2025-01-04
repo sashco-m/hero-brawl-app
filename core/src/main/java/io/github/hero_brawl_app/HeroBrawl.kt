@@ -18,9 +18,9 @@ class HeroBrawl: Game() {
     lateinit var camera: OrthographicCamera
     val playerId = UUID.randomUUID().toString()
     // EMULATOR
-    //val host = "10.0.2.2"
+    val host = "10.0.2.2"
     // PHYSICAL
-    val host = "localhost"
+    //val host = "localhost"
 
     override fun create() {
         batch = SpriteBatch()

@@ -18,6 +18,8 @@ class BattleREST(val game: HeroBrawl) {
         json.setOutputType(OutputType.json)
     }
 
+    // TODO REMOVE
+    // replaced with pushing events via websocket
     fun addPiece(unit: Unit) {
         // TODO when deployed, set https and remove the network_security_config
         val url = "http://${game.host}:5000/battle/add-piece"

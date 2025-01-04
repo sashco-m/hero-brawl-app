@@ -22,7 +22,7 @@ class Battle(private var game: HeroBrawl) : Screen {
     // REST
     private var rest = BattleREST(game)
 
-    private var board = Board(game, rest, model)
+    private var board = Board(game, rest, socket, model)
 
 
     private var cards = arrayListOf(

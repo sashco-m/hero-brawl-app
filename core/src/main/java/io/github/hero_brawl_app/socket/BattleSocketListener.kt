@@ -10,6 +10,8 @@ class BattleSocketListener(private val model: Model, private val json: Json, pri
 
     override fun onOpen(webSocket: WebSocket?): Boolean {
         Gdx.app.log("#INFO", "socket Opened")
+        // send the client ID when the socket is opened
+        onConnectionReady()
         return true
     }
 
@@ -21,11 +23,6 @@ class BattleSocketListener(private val model: Model, private val json: Json, pri
     override fun onMessage(webSocket: WebSocket?, packet: String?): Boolean {
         Gdx.app.log("#INFO", "New State")
         Gdx.app.log("#INFO", json.prettyPrint(packet))
-
-        // ready for connection
-        if(packet == "success"){
-            onConnectionReady()
-        }
 
         Gdx.app.log("#INFO", "Old State")
         Gdx.app.log("#INFO", "${model.friendlyUnits[0].positionY}")

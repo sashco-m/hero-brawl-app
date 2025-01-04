@@ -14,6 +14,10 @@ class Socket(game: HeroBrawl, model: Model) {
     private val socket: WebSocket = WebSockets.newSocket("ws://${game.host}:5000/battle")
     private val json = Json()
 
+    data class Body(val id:String, val type: String, val x: Float, val y: Float)
+
+    data class Event(val type: String, val data: Body)
+
     init {
         json.setOutputType(OutputType.json)
         // onConnectionReady
@@ -22,6 +26,9 @@ class Socket(game: HeroBrawl, model: Model) {
         socket.setSendGracefully(true)
         socket.addListener(BattleSocketListener(model, json, ::sendPlayerId))
         socket.connect()
+    }
 
+    fun placeUnit(unit: Unit) {
+       socket.send(json.toJson(Event("unit_placed", Body(unit.id, unit.name, unit.positionX, unit.positionY))))
     }
 }
